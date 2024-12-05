@@ -1,25 +1,30 @@
+import { ROLES } from "@/constants";
 import {
+  pgTable,
   text,
   timestamp,
   boolean,
-  varchar,
   pgSchema,
 } from "drizzle-orm/pg-core";
 
 export const authSchema = pgSchema("auth");
 
 export const user = authSchema.table("user", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("emailVerified").notNull(),
   image: text("image"),
   createdAt: timestamp("createdAt").notNull(),
   updatedAt: timestamp("updatedAt").notNull(),
+  role: text("role").default(ROLES.User),
+  banned: boolean("banned"),
+  banReason: text("banReason"),
+  banExpires: timestamp("banExpires"),
 });
 
 export const session = authSchema.table("session", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   expiresAt: timestamp("expiresAt").notNull(),
   token: text("token").notNull().unique(),
   createdAt: timestamp("createdAt").notNull(),
@@ -29,10 +34,11 @@ export const session = authSchema.table("session", {
   userId: text("userId")
     .notNull()
     .references(() => user.id),
+  impersonatedBy: text("impersonatedBy"),
 });
 
 export const account = authSchema.table("account", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   accountId: text("accountId").notNull(),
   providerId: text("providerId").notNull(),
   userId: text("userId")
@@ -50,7 +56,7 @@ export const account = authSchema.table("account", {
 });
 
 export const verification = authSchema.table("verification", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
   expiresAt: timestamp("expiresAt").notNull(),

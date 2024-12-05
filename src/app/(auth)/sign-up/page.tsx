@@ -76,17 +76,20 @@ const SignInPage = () => {
             <div className="inline-block p-3 rounded-full bg-primary/10">
               <LockKeyholeIcon className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Cadastre-se
-            </h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Sign-up</h1>
             <p className="text-sm text-muted-foreground">
-              Preencha os dados para criar uma conta
+              Fill the form to create an account
             </p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">Nome do Restaurante</Label>
-              <Input id="name" type="name" {...register("name")} />
+              <Label htmlFor="email">Name</Label>
+              <Input
+                id="name"
+                type="name"
+                {...register("name")}
+                placeholder="Your Name"
+              />
               {errors.email && (
                 <p className="text-sm text-destructive">
                   {errors.email.message}
@@ -113,7 +116,7 @@ const SignInPage = () => {
               <Input
                 id="password"
                 type="password"
-                placeholder="*******"
+                placeholder="*********"
                 {...register("password")}
               />
               {errors.password && (
@@ -126,7 +129,7 @@ const SignInPage = () => {
               {isLoading ? (
                 <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                "Cadastrar"
+                "Sign-up"
               )}
             </Button>
           </form>

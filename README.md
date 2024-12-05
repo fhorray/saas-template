@@ -1,4 +1,4 @@
-# SaaS Template - Next.js with Hono.js, Drizzle ORM and Better Auth 
+# SaaS Template - Next.js with Hono.js, Drizzle ORM and Better Auth
 
 This project is a template built using [Next.js](https://nextjs.org/), [Hono.js](https://hono.dev/), and [Drizzle ORM](https://orm.drizzle.team/), designed to serve as a foundation for creating SaaS platforms. It integrates state management with Zustand and showcases best practices for a modern full-stack application.
 
@@ -43,7 +43,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 - **Environment Configuration**: Example .env.example provided for defining environment variables.
 - **Cloudflare Integration**: Compatible with [Cloudflare Pages](https://pages.cloudflare.com/) and [Wrangler](https://developers.cloudflare.com/workers/wrangler/).
 
-
 ---
 
 ## Cloudflare Integration
@@ -54,4 +53,4 @@ This project supports deployment to Cloudflare Pages. It includes scripts to sim
 - `preview`: Locally preview the application with the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/).
 - `deploy`: Deploy the application to Cloudflare Pages using the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/).
 
-> __Note:__ while the `dev` script is optimal for local development you should preview your Pages application as well (periodically or before deployments) in order to make sure that it can properly work in the Pages environment (for more details see the [`@cloudflare/next-on-pages` recommended workflow](https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md#recommended-development-workflow))
+> **Note:** while the `dev` script is optimal for local development you should preview your Pages application as well (periodically or before deployments) in order to make sure that it can properly work in the Pages environment (for more details see the [`@cloudflare/next-on-pages` recommended workflow](https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md#recommended-development-workflow))
