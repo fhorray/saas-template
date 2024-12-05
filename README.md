@@ -1,4 +1,4 @@
-# SaaS Template - Next.js with Hono.js and Drizzle ORM
+# SaaS Template - Next.js with Hono.js, Drizzle ORM and Better Auth 
 
 This project is a template built using [Next.js](https://nextjs.org/), [Hono.js](https://hono.dev/), and [Drizzle ORM](https://orm.drizzle.team/), designed to serve as a foundation for creating SaaS platforms. It integrates state management with Zustand and showcases best practices for a modern full-stack application.
 
@@ -39,8 +39,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 - **Backend Framework**: Built with [Hono.js](https://hono.dev/), a fast and lightweight web framework for the backend.
 - **Database ORM**: Uses [Drizzle ORM](https://orm.drizzle.team/) for managing database queries with TypeScript support.
 - **State Management**: Powered by [Zustand](https://zustand-demo.pmnd.rs/), providing a simple and scalable solution.
+- **Authentication**: Integrated with [Better Auth](https://better-auth.com/), a secure and simple solution for user authentication.
 - **Environment Configuration**: Example .env.example provided for defining environment variables.
 - **Cloudflare Integration**: Compatible with [Cloudflare Pages](https://pages.cloudflare.com/) and [Wrangler](https://developers.cloudflare.com/workers/wrangler/).
+
 
 ---
 
