@@ -2,6 +2,7 @@
   "files.exclude": {
     "**/node_modules": true,
     "**/.wrangler": true,
-    "**/.next": true
+    "**/.next": true,
+    "**/.vercel": true
   }
 }

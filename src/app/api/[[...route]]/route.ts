@@ -31,9 +31,15 @@ app.on(["POST", "GET"], "/auth/**", (c) => {
   return auth.handler(c.req.raw);
 });
 
+app.get("/hello", (c) => {
+  return c.text("Hello Next.js!");
+});
+
 // routes
 app.route("/subscription", subscriptionRoutes);
 app.route("/stripe", stripeRoutes);
 
 export const GET = handle(app);
 export const POST = handle(app);
+export const PATCH = handle(app);
+export const DELETE = handle(app);

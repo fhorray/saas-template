@@ -27,6 +27,11 @@ export const STRIPE_PLANS = [
     price_id: "price_1QT7G6IlpoKc18GMRy6qqTGn",
     isFeatured: true,
   },
+  {
+    plan_name: "Premium",
+    price_id: "price_1QT7G6IlpoKc18GMRy6qqTGn",
+    isFeatured: true,
+  },
 ];
 
 export const STRIPE_PLAN_NAMES = STRIPE_PLANS.map((p) => p.plan_name) as [

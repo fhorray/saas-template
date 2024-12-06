@@ -5,6 +5,7 @@ import { APP_INFO } from "@/config";
 import { Sidebar } from "@/components/commom/sidebar";
 import { Header } from "@/components/commom/header";
 import { QueryProvider } from "@/providers/react-query-provider";
+import DashboardLayout from "./main-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,15 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
-          <div className="pl-24">
-            <Sidebar />
-
-            <div className="flex flex-col">
-              <Header />
-
-              <main>{children}</main>
-            </div>
-          </div>
+          <DashboardLayout>{children}</DashboardLayout>
         </QueryProvider>
       </body>
     </html>
