@@ -1,4 +1,4 @@
-import { ROLES } from "@/constants";
+import { ROLES } from "@/config";
 import {
   pgTable,
   text,
@@ -9,7 +9,7 @@ import {
 
 export const authSchema = pgSchema("auth");
 
-export const user = authSchema.table("user", {
+export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { PUBLIC_ROUTES } from "./constants";
+import { PUBLIC_ROUTES } from "./config";
 
 export async function middleware(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;

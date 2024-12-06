@@ -13,10 +13,11 @@ import {
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/auth-client";
+import Link from "next/link";
 
 // menu items
 const items = [
-  { label: "Home", url: "#", icon: HomeIcon },
+  { label: "Home", url: "/", icon: HomeIcon },
   {
     label: "Inbox",
     url: "#",
@@ -49,9 +50,11 @@ export const Sidebar = () => {
 
         <div className="w-full flex flex-col p-4 gap-4">
           {items.map((item) => (
-            <Button variant={"ghost"} size={"icon"} key={item.label}>
-              <item.icon className="mr-2 !h-5 !w-5" />
-            </Button>
+            <Link href={item.url} key={item.label}>
+              <Button variant={"ghost"} size={"icon"}>
+                <item.icon className="mr-2 !h-5 !w-5" />
+              </Button>
+            </Link>
           ))}
         </div>
       </div>

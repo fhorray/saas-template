@@ -10,9 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TSession } from "@/lib/auth";
+
 import { authClient, logout } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { CustomLoading } from "./custom-loading";
 
 export const Header = () => {
   return (
@@ -27,10 +28,9 @@ export const Header = () => {
 // USER AVATAR WITH A MENU
 const UserNav = () => {
   const router = useRouter();
-  const { data: session, isPending, error } = authClient.useSession();
-  const user = session?.user;
 
-  if (isPending) return <CustomLoading />;
+  const session = authClient.useSession().data as TSession;
+  const user = session?.user;
 
   return (
     <DropdownMenu>
@@ -44,12 +44,11 @@ const UserNav = () => {
               }
               alt="User Image"
             />
-            <AvatarFallback></AvatarFallback>
           </Avatar>
 
           <div>
             <h4 className="font-bold">{user?.name}</h4>
-            <span className="text-sm">User</span>
+            <span className="text-sm">{user?.role}</span>
           </div>
         </div>
       </DropdownMenuTrigger>
@@ -70,21 +69,13 @@ const UserNav = () => {
           <DropdownMenuItem>Profile</DropdownMenuItem>
           {/* configurations */}
           <DropdownMenuItem>Configurations</DropdownMenuItem>
+          {/* plan */}
+          <DropdownMenuItem onClick={() => router.push("/subscription")}>
+            Subscription
+          </DropdownMenuItem>
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
-
-        <DropdownMenuItem
-          onClick={() =>
-            authClient.sendVerificationEmail({
-              email: user?.email!,
-              callbackURL: "http://localhost:3000",
-              fetchOptions: {},
-            })
-          }
-        >
-          Verificar
-        </DropdownMenuItem>
 
         {/* logout */}
         <DropdownMenuItem onClick={() => logout()}>Sair</DropdownMenuItem>
