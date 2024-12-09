@@ -1,4 +1,4 @@
-import { Bindings, Variables } from "@/types/cf-bindings";
+import { Bindings, Variables } from "@/types/bindings";
 
 import { Hono } from "hono";
 import { getProducts } from "./controllers";

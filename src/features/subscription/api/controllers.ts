@@ -1,6 +1,6 @@
 import { createFactory } from "hono/factory";
 import { getSubscriptionService } from "./services";
-import { Bindings, Variables } from "@/types/cf-bindings";
+import { Bindings, Variables } from "@/types/bindings";
 import { createAPIResponse } from "@/utils/api";
 import { zValidator } from "@hono/zod-validator";
 
@@ -123,7 +123,7 @@ export const subscriptionCallback = factory.createHandlers(
     }
 
     try {
-      const sessionInfo = await getSessionInfo(c, session_id);
+      const sessionInfo = await getSessionInfo(session_id);
 
       // insert subscription inside db
       if (
@@ -152,14 +152,10 @@ export const subscriptionCallback = factory.createHandlers(
 
         // send email
         // const { data, error } = await resend.emails.send({
-        //   // from: `Psycopoint <suporte@${c.env.DOMAIN}>`,
-        //   from: `Psycopoint <suporte@psycopoint.com>`,
+        //   // from: `App Name <support@appname.com>`,
         //   to: [user.email as string],
-        //   subject: "Bem-vindo ao Psycopoint!",
-        //   react: WelcomeEmail({
-        //     plan:
-        //       (subscriptionDb?.productName as PlanOptions) || "Profissional",
-        //   }),
+        //   subject: "Welcome!",
+        //   react: WelcomeEmail({}),
         // });
       }
 

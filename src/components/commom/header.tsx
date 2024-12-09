@@ -78,7 +78,7 @@ const UserNav = () => {
         <DropdownMenuSeparator />
 
         {/* logout */}
-        <DropdownMenuItem onClick={() => logout()}>Sair</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

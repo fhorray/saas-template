@@ -1,6 +1,6 @@
 import { DEFAULT_LOCALE, TRIAL_DAYS } from "@/config";
 import { stripeClient } from "@/lib/stripe";
-import { Bindings, Variables } from "@/types/cf-bindings";
+import { Bindings, Variables } from "@/types/bindings";
 import { createAPIResponse } from "@/utils/api";
 import { createFactory } from "hono/factory";
 

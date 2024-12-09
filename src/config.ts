@@ -2,18 +2,18 @@ import { Currency, Locale } from "./types/common";
 
 export const PUBLIC_ROUTES = ["/sign-in", "/sign-up"];
 
-export const ROLES = Object.freeze({
+export const ROLES = {
   Admin: "admin",
   User: "user",
-});
+} as const;
 
 export const ROLE_LIST = Object.values(ROLES);
 
-export const APP_INFO = Object.freeze({
+export const APP_INFO = {
   Name: "App Name",
   Description: "A cool Description here",
   Prefix: "app_name", // this will be used to name the session cookie: app_name.session
-});
+} as const;
 
 // STRIPE PLANS
 export const STRIPE_PLANS = [
@@ -32,7 +32,7 @@ export const STRIPE_PLANS = [
     price_id: "price_1QT7G6IlpoKc18GMRy6qqTGn",
     isFeatured: true,
   },
-];
+] as const;
 
 export const STRIPE_PLAN_NAMES = STRIPE_PLANS.map((p) => p.plan_name) as [
   (typeof STRIPE_PLANS)[number]["plan_name"],
@@ -40,7 +40,7 @@ export const STRIPE_PLAN_NAMES = STRIPE_PLANS.map((p) => p.plan_name) as [
 ];
 
 // DEFINE TRIAL DAYS FOR ALL THE SUBSCRIPTIONS
-export const TRIAL_DAYS = 2;
+export const TRIAL_DAYS = 0;
 
 // LOCALIZATION
 export const DEFAULT_LOCALE: Locale = "pt-BR";

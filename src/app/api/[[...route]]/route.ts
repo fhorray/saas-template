@@ -4,7 +4,7 @@ import { handle } from "hono/vercel";
 
 import subscriptionRoutes from "@/features/subscription/api/routes";
 import stripeRoutes from "@/features/stripe/api/routes";
-import { Variables } from "@/types/cf-bindings";
+import { Variables } from "@/types/bindings";
 
 export const runtime = "edge";
 

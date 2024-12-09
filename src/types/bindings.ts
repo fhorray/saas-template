@@ -1,9 +1,6 @@
 import { auth } from "@/lib/auth";
 
 export type Bindings = {
-  AI: Ai;
-  HYPERDRIVE: Hyperdrive;
-
   PROJECT_NAME: string;
   DATABASE_URL: string;
   FRONTEND_URL: string;

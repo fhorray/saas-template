@@ -8,10 +8,9 @@ export const stripeClient = () => {
   return stripe;
 };
 
-export const getSessionInfo = async (c: Context, sessionId: string) => {
-  const user = c.get("user");
-  if (!user) {
-    throw new Error("Unauthorized");
+export const getSessionInfo = async (sessionId: string) => {
+  if (!sessionId) {
+    throw new Error("Missing Session ID");
   }
 
   const stripe = stripeClient();
