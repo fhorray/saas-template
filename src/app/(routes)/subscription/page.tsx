@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { useStripeProducts } from "@/features/stripe/hooks/use-stripe-products";
-import { ProductCard } from "@/features/subscription/components/product-card";
+import { useStripe } from "@/hooks/use-stripe";
+import { ProductCard } from "@/components/subscription/product-card";
 import { TSelectProduct } from "@/types/stripe";
 import { CheckIcon, ZapIcon } from "lucide-react";
 
 const SubscriptionPage = () => {
-  const products = useStripeProducts();
+  const stripe = useStripe();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
@@ -40,7 +40,7 @@ const SubscriptionPage = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.data?.map((product) => (
+          {stripe.products.list.data?.map((product) => (
             <ProductCard key={product.productId} product={product} />
           ))}
         </div>

@@ -1,5 +1,5 @@
 import { createFactory } from "hono/factory";
-import { getSubscriptionService } from "@/app/api/_teste/services/subscription.services";
+import { getSubscriptionService } from "@/app/api/services/subscription.services";
 import { Bindings, Variables } from "@/types/bindings";
 import { createAPIResponse } from "@/app/api/response-helper";
 import { zValidator } from "@hono/zod-validator";
@@ -68,8 +68,8 @@ export const goToCheckout = factory.createHandlers(
         },
 
         allow_promotion_codes: true,
-        success_url: `${process.env.BETTER_AUTH_URL}/api/subscription/callback?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.BETTER_AUTH_URL}/subscription`,
+        success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/subscription/callback?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/subscription`,
 
         // PRODUCTS & PRICE
         line_items: [
@@ -159,7 +159,7 @@ export const subscriptionCallback = factory.createHandlers(
         // });
       }
 
-      return c.redirect(`${process.env.BETTER_AUTH_URL}?success=true`);
+      return c.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}?success=true`);
     } catch (error) {
       return c.json(
         createAPIResponse({
@@ -188,7 +188,7 @@ export const goToPortal = factory.createHandlers(
     try {
       const data = await stripe.billingPortal.sessions.create({
         customer,
-        return_url: `${process.env.BETTER_AUTH_URL}/subscription`,
+        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/subscription`,
       });
 
       return c.json(createAPIResponse({ status: "success", data }), 200);

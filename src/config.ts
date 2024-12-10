@@ -4,7 +4,8 @@ export const PUBLIC_ROUTES = ["/sign-in", "/sign-up"];
 export const ADMIN_ROUTE = "/admin";
 
 /**
- * DO not forget to push your updated migrations to database if you edit the roles
+ * Roles available in the application.
+ * If you modify these roles, ensure to update/push the database migrations accordingly on every update you make in here.
  */
 export const ROLES = {
   Superadmin: "superadmin",
@@ -20,7 +21,10 @@ export const APP_INFO = {
   Prefix: "app_name", // this will be used to name the session cookie: app_name.session
 } as const;
 
-// STRIPE PLANS
+/**
+ * Stripe subscription plans available in the application.
+ * Each plan includes a name, Stripe price ID, and a flag indicating whether it is featured.
+ */
 export const STRIPE_PLANS = [
   {
     plan_name: "Pro",

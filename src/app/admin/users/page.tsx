@@ -20,7 +20,7 @@ interface UserTableProps {
   onDelete: (userId: string) => void;
 }
 
-export const mockUsers: Partial<SelectUser>[] = [
+const mockUsers: Partial<SelectUser>[] = [
   {
     id: "1",
     name: "John Doe",

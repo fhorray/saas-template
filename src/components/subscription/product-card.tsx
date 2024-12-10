@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useSubscription } from "../hooks/use-subscription";
+import { useSubscription } from "../../hooks/use-subscription";
 import { STRIPE_PLAN_NAMES, TRIAL_DAYS } from "@/config";
 
 export const ProductCard = ({ product }: { product: TSelectProduct }) => {

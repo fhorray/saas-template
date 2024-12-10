@@ -2,36 +2,45 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { ADMIN_ROUTE, PUBLIC_ROUTES } from "./config";
+import { PUBLIC_ROUTES, ROLES } from "./config";
+import { RouteConfig } from "./types/common";
+
+const publicRoutesRegex = new RegExp(
+  `^\\/(${PUBLIC_ROUTES.map((route) => route.slice(1)).join("|")})$`
+);
+
+// Define your route types
+const ROUTE_CONFIG: RouteConfig[] = [
+  { path: publicRoutesRegex, auth: false },
+  { path: /^\/admin/, auth: true, roles: ["superadmin"] },
+  { path: /.*/, auth: true },
+];
 
 export async function middleware(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
 
-  // get better-auth session
+  // Get the user's session
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  // user is authenticated
-  if (session) {
-    if (PUBLIC_ROUTES.includes(currentPath)) {
-      const destination = "/";
-      if (currentPath !== destination) {
-        return NextResponse.redirect(new URL("/", req.url));
-      }
+  const routeConfig = ROUTE_CONFIG.find(({ path }) => path.test(currentPath));
+
+  if (!routeConfig) {
+    return NextResponse.next();
+  }
+
+  if (routeConfig.auth) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
     }
 
-    // verify if user is trying to access an admin page and has a role "admin", if not redirect the user to the main page
-    if (currentPath.startsWith(ADMIN_ROUTE) && session.user.role !== "admin") {
+    if (routeConfig.roles && !routeConfig.roles.includes(session.user.role)) {
       return NextResponse.redirect(new URL("/", req.url));
     }
   } else {
-    // user is unauthenticated
-    if (!PUBLIC_ROUTES.includes(currentPath)) {
-      const destination = "/sign-in";
-      if (currentPath !== destination) {
-        return NextResponse.redirect(new URL(destination, req.url));
-      }
+    if (session && currentPath === "/sign-in") {
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
@@ -40,13 +49,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/",
-    "/sign-in",
-    "/sign-up",
-    "/dashboard",
-    "/profile",
-    "/admin",
-    "/admin/users",
-    "/subscription",
+    "/((?!_next|favicon\\.ico|public).*)", // Match all routes except for specific ones
   ],
 };

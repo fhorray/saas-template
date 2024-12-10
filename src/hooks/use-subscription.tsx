@@ -10,7 +10,7 @@ export const useSubscription = () => {
     queryKey: ["subscription"],
     queryFn: async () => {
       const res = await axios.get<ApiResponse<SelectSubscription>>(
-        `${process.env.BETTER_AUTH_URL}/api/subscription`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/subscription`
       );
 
       if (res.status !== 200) {
@@ -24,7 +24,7 @@ export const useSubscription = () => {
   const goToCheckout = useMutation({
     mutationFn: async (plan?: (typeof STRIPE_PLAN_NAMES)[number]) => {
       const res = await axios.post<ApiResponse<Stripe.Checkout.Session>>(
-        `${process.env.BETTER_AUTH_URL}/api/subscription/checkout?plan=${plan}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/subscription/checkout?plan=${plan}`
       );
 
       if (res.status !== 200) {
@@ -41,7 +41,7 @@ export const useSubscription = () => {
   const goToPortal = useMutation({
     mutationFn: async () => {
       const res = await axios.post<ApiResponse<Stripe.BillingPortal.Session>>(
-        `${process.env.BETTER_AUTH_URL}/api/subscription/portal?customer=${subscription.data?.customerId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/subscription/portal?customer=${subscription.data?.customerId}`
       );
 
       if (res.status !== 200) {

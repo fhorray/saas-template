@@ -3,12 +3,12 @@ import { TSelectProduct } from "@/types/stripe";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export const useStripeProducts = () => {
-  const query = useQuery<TSelectProduct[]>({
+export const useStripe = () => {
+  const productsList = useQuery<TSelectProduct[]>({
     queryKey: ["stripe_products"],
     queryFn: async () => {
       const res = await axios.get<ApiResponse<TSelectProduct[]>>(
-        `${process.env.BETTER_AUTH_URL}/api/stripe/products`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/products`
       );
 
       if (res.status !== 200) {
@@ -19,5 +19,9 @@ export const useStripeProducts = () => {
     },
   });
 
-  return query;
+  return {
+    products: {
+      list: productsList,
+    },
+  };
 };
