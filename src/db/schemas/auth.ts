@@ -1,13 +1,19 @@
-import { ROLES } from "@/config";
+import { ROLES, ROLE_LIST } from "@/config";
 import {
   pgTable,
   text,
   timestamp,
   boolean,
   pgSchema,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 
 export const authSchema = pgSchema("auth");
+
+export const userRoleEnum = pgEnum(
+  "user_role_enum",
+  ROLE_LIST as [(typeof ROLE_LIST)[0], ...typeof ROLE_LIST]
+);
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -17,7 +23,7 @@ export const user = pgTable("user", {
   image: text("image"),
   createdAt: timestamp("createdAt").notNull(),
   updatedAt: timestamp("updatedAt").notNull(),
-  role: text("role").default(ROLES.User),
+  role: userRoleEnum("role").default("user"),
   banned: boolean("banned"),
   banReason: text("banReason"),
   banExpires: timestamp("banExpires"),

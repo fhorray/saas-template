@@ -1,4 +1,4 @@
-import { APP_INFO, ROLES } from "@/config";
+import { APP_INFO, ROLES, ROLE_LIST } from "@/config";
 import { db } from "@/db";
 import {
   account,
@@ -6,12 +6,19 @@ import {
   user as userDb,
   verification,
 } from "@/db/schemas";
-import { betterAuth } from "better-auth";
+import { BetterAuthPlugin, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from "better-auth/plugins";
+
+// plugins
+import {
+  admin,
+  createAuthEndpoint,
+  createAuthMiddleware,
+  openAPI,
+} from "better-auth/plugins";
 
 export const auth = betterAuth({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
+  baseURL: process.env.BETTER_AUTH_URL!,
 
   database: drizzleAdapter(db, {
     provider: "pg",
@@ -34,7 +41,7 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: ["http://localhost:3000"],
+  // trustedOrigins: ["http://localhost:3000"],
 
   socialProviders: {
     google: {
@@ -61,12 +68,13 @@ export const auth = betterAuth({
     admin({
       defaultRole: ROLES.User,
     }),
+    openAPI(),
   ],
 
   user: {
     additionalFields: {
       role: {
-        type: "string",
+        type: ROLE_LIST,
       },
     },
   },

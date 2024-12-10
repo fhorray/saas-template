@@ -1,5 +1,6 @@
 CREATE SCHEMA "auth";
 --> statement-breakpoint
+CREATE TYPE "public"."user_role_enum" AS ENUM('superadmin', 'admin', 'user');--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "auth"."account" (
 	"id" text PRIMARY KEY NOT NULL,
 	"accountId" text NOT NULL,
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"image" text,
 	"createdAt" timestamp NOT NULL,
 	"updatedAt" timestamp NOT NULL,
-	"role" text DEFAULT 'user',
+	"role" "user_role_enum" DEFAULT 'user',
 	"banned" boolean,
 	"banReason" text,
 	"banExpires" timestamp,

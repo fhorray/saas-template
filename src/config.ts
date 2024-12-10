@@ -1,8 +1,13 @@
 import { Currency, Locale } from "./types/common";
 
 export const PUBLIC_ROUTES = ["/sign-in", "/sign-up"];
+export const ADMIN_ROUTE = "/admin";
 
+/**
+ * DO not forget to push your updated migrations to database if you edit the roles
+ */
 export const ROLES = {
+  Superadmin: "superadmin",
   Admin: "admin",
   User: "user",
 } as const;
@@ -36,7 +41,7 @@ export const STRIPE_PLANS = [
 
 export const STRIPE_PLAN_NAMES = STRIPE_PLANS.map((p) => p.plan_name) as [
   (typeof STRIPE_PLANS)[number]["plan_name"],
-  ...(typeof STRIPE_PLANS)[number]["plan_name"][]
+  ...(typeof STRIPE_PLANS)[number]["plan_name"][],
 ];
 
 // DEFINE TRIAL DAYS FOR ALL THE SUBSCRIPTIONS

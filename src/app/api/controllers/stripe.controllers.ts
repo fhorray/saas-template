@@ -1,7 +1,7 @@
 import { DEFAULT_LOCALE, TRIAL_DAYS } from "@/config";
 import { stripeClient } from "@/lib/stripe";
 import { Bindings, Variables } from "@/types/bindings";
-import { createAPIResponse } from "@/utils/api";
+import { createAPIResponse } from "@/app/api/response-helper";
 import { createFactory } from "hono/factory";
 
 const factory = createFactory<{
