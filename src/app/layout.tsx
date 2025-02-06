@@ -5,8 +5,9 @@ import { APP_INFO } from "@/config";
 import { Sidebar } from "@/components/commom/sidebar";
 import { Header } from "@/components/commom/header";
 import { QueryProvider } from "@/providers/react-query-provider";
+
+import AuthWrapper from "@/app/auth-wrapper";
 import DashboardLayout from "./main-layout";
-import AuthWrapper from "@/app/client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
-          <DashboardLayout>
-            <AuthWrapper>{children}</AuthWrapper>
-          </DashboardLayout>
+          <AuthWrapper>
+            <DashboardLayout>{children}</DashboardLayout>
+          </AuthWrapper>
         </QueryProvider>
       </body>
     </html>
