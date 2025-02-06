@@ -1,21 +1,16 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "menuyu"
+name = "app-name"
 compatibility_date = "2024-11-06"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
-
-
-######## PREVIEW environment config ########
-[env.preview.vars]
 NODE_VERSION = "22.12.0"
+BASE_URL = "https://masaas.francy.dev"
+
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PREVIEW_NAMESPACE_ID>"
 
-######## PRODUCTION environment config ########
-[env.production.vars]
-NODE_VERSION = "22.12.0"
 
 
 # [[env.production.kv_namespaces]]
