@@ -30,7 +30,10 @@ export const auth = betterAuth({
     usePlural: true,
   }),
 
-  trustedOrigins: ["http://127.0.0.1:8788"],
+  trustedOrigins: [
+    "https://masaas.francy.dev",
+    "https://saas-template-d4e.pages.dev/",
+  ],
 
   emailAndPassword: {
     enabled: true,
