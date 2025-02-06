@@ -44,6 +44,8 @@ const mockUsers: Partial<SelectUser>[] = [
   },
 ];
 
+export const runtime = "edge";
+
 const UsersDetails = () => {
   const [users, setUsers] = useState(mockUsers);
 

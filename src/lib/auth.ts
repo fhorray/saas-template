@@ -1,13 +1,13 @@
-import { APP_INFO, ROLES, ROLE_LIST } from '@/config';
-import { db } from '@/db';
+import { APP_INFO, ROLES, ROLE_LIST } from "@/config";
+import { db } from "@/db";
 import {
   account,
   session as sessionDb,
   user as userDb,
   verification,
-} from '@/db/schemas';
-import { BetterAuthPlugin, betterAuth } from 'better-auth';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+} from "@/db/schemas";
+import { BetterAuthPlugin, betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 // plugins
 import {
@@ -15,13 +15,12 @@ import {
   createAuthEndpoint,
   createAuthMiddleware,
   openAPI,
-} from 'better-auth/plugins';
+} from "better-auth/plugins";
+import { drizzle } from "drizzle-orm/neon-http";
 
 export const auth = betterAuth({
-  baseURL: 'http://localhost:8788/api/auth',
-
-  database: drizzleAdapter(db, {
-    provider: 'pg',
+  database: drizzleAdapter(drizzle(process.env.DATABASE_URL!), {
+    provider: "pg",
     schema: {
       user: userDb,
       session: sessionDb,
@@ -29,6 +28,8 @@ export const auth = betterAuth({
       verification: verification,
     },
   }),
+
+  trustedOrigins: ["http://127.0.0.1:8788"],
 
   emailAndPassword: {
     enabled: true,
@@ -40,8 +41,6 @@ export const auth = betterAuth({
       }, 2000);
     },
   },
-
-  // trustedOrigins: ["http://localhost:3000"],
 
   socialProviders: {
     google: {

@@ -3,7 +3,7 @@ import { pgTable, text, jsonb, pgEnum } from "drizzle-orm/pg-core";
 
 import { user } from "./auth";
 
-const subscriptionStatusEnum = pgEnum("subscription_status_enum", [
+export const subscriptionStatusEnum = pgEnum("subscription_status_enum", [
   "incomplete",
   "incomplete_expired",
   "trialing",

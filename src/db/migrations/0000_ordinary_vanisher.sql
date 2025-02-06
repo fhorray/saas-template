@@ -1,6 +1,7 @@
 CREATE SCHEMA "auth";
 --> statement-breakpoint
 CREATE TYPE "public"."user_role_enum" AS ENUM('superadmin', 'admin', 'user');--> statement-breakpoint
+CREATE TYPE "public"."subscription_status_enum" AS ENUM('incomplete', 'incomplete_expired', 'trialing', 'active', 'past_due', 'canceled', 'unpaid', 'paused');--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "auth"."account" (
 	"id" text PRIMARY KEY NOT NULL,
 	"accountId" text NOT NULL,

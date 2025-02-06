@@ -6,6 +6,7 @@ import { Sidebar } from "@/components/commom/sidebar";
 import { Header } from "@/components/commom/header";
 import { QueryProvider } from "@/providers/react-query-provider";
 import DashboardLayout from "./main-layout";
+import AuthWrapper from "@/client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
-          <DashboardLayout>{children}</DashboardLayout>
+          <DashboardLayout>
+            <AuthWrapper>{children}</AuthWrapper>
+          </DashboardLayout>
         </QueryProvider>
       </body>
     </html>

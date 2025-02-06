@@ -1,5 +1,5 @@
 {
-  "id": "78cfe52a-7e7d-4f0c-97e7-aae41750f5e7",
+  "id": "4fdd3436-c82e-4a72-a7fd-a3e524162802",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -486,6 +486,20 @@
         "superadmin",
         "admin",
         "user"
+      ]
+    },
+    "public.subscription_status_enum": {
+      "name": "subscription_status_enum",
+      "schema": "public",
+      "values": [
+        "incomplete",
+        "incomplete_expired",
+        "trialing",
+        "active",
+        "past_due",
+        "canceled",
+        "unpaid",
+        "paused"
       ]
     }
   },
