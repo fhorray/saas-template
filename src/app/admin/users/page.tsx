@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { SelectUser } from "@/types/user";
+import { UserWithRole } from "better-auth/plugins";
 import {
   Edit2Icon,
   PlusIcon,
@@ -48,7 +49,7 @@ const mockUsers: Partial<SelectUser>[] = [
 export const runtime = "edge";
 
 const UsersDetails = () => {
-  const [users, setUsers] = useState<any>();
+  const [users, setUsers] = useState<UserWithRole[] | undefined>([]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -58,7 +59,7 @@ const UsersDetails = () => {
         },
       });
 
-      setUsers(data);
+      setUsers(data.data?.users);
     };
 
     getUsers();
@@ -75,25 +76,25 @@ const UsersDetails = () => {
   const stats = [
     {
       label: "Total Users",
-      value: users.length,
+      value: users?.length,
       icon: UsersIcon,
       color: "text-blue-500",
     },
     {
       label: "Active Users",
-      value: users.filter((user) => user.banned).length,
+      value: users?.filter((user) => user.banned).length,
       icon: UserCheckIcon,
       color: "text-green-500",
     },
     {
       label: "Inactive Users",
-      value: users.filter((user) => user.banned).length,
+      value: users?.filter((user) => user.banned).length,
       icon: UserXIcon,
       color: "text-red-500",
     },
     {
       label: "Admins",
-      value: users.filter((user) => user.role === "admin").length,
+      value: users?.filter((user) => user.role === "superadmin").length,
       icon: Shield,
       color: "text-purple-500",
     },
@@ -140,7 +141,7 @@ const UsersDetails = () => {
             </tr>
           </thead>
           <tbody className="[&_tr:last-child]:border-0">
-            {users.map((user) => (
+            {users?.map((user) => (
               <tr
                 key={user.id}
                 className="border-b transition-colors hover:bg-secondary/50 data-[state=selected]:bg-secondary"

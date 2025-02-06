@@ -1,8 +1,8 @@
 import { Currency, Locale } from "./types/common";
 
-export const PUBLIC_ROUTES = ["/sign-in", "/sign-up"];
+export const PUBLIC_ROUTES = ["/sign-in", "/sign-up", "/text/one"];
 export const PRIVATE_ROUTES = ["/protected", "/"];
-export const ADMIN_ROUTE = "/admin";
+export const ADMIN_ROUTE = ["/admin(.?)"];
 
 /**
  * Roles available in the application.

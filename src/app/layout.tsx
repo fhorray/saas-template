@@ -6,7 +6,7 @@ import { Sidebar } from "@/components/commom/sidebar";
 import { Header } from "@/components/commom/header";
 import { QueryProvider } from "@/providers/react-query-provider";
 import DashboardLayout from "./main-layout";
-import AuthWrapper from "@/client-layout";
+import AuthWrapper from "@/app/client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
