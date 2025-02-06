@@ -8,7 +8,7 @@ export const useStripe = () => {
     queryKey: ["stripe_products"],
     queryFn: async () => {
       const res = await axios.get<ApiResponse<TSelectProduct[]>>(
-        `${process.env.BASE_URL}/api/stripe/products`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/products`
       );
 
       if (res.status !== 200) {
