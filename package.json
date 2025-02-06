@@ -7,10 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "pages:build": "bunx @cloudflare/next-on-pages",
+    "preview": "bun pages:build && wrangler pages dev",
+    "deploy": "bun pages:build && wrangler pages deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
     "gen": "drizzle-kit generate",
     "up": "drizzle-kit migrate",
     "drop": "drizzle-kit drop",
     "studio": "drizzle-kit studio",
+    "cron": "curl 'http://localhost:3000/__scheduled?cron=*+*+*+*+*'",
     "auth:generate": "bunx @better-auth/cli generate --config='/src/lib/auth.ts' --output='./src/db/schemas/auth.ts'"
   },
   "dependencies": {

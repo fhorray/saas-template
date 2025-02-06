@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Loader2Icon, LockKeyholeIcon } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@/lib/auth-client";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Loader2Icon, LockKeyholeIcon } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const loginSchema = z.object({
-  name: z.string({ message: "Provide the restaurant name" }),
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  name: z.string({ message: 'Provide the restaurant name' }),
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -33,23 +33,23 @@ const SignInPage = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log(data);
+    console.log('VALUES: ', data);
 
     setIsLoading(true);
 
     try {
       const res = await authClient.signUp.email(data, {
         onSuccess: () => {
-          router.replace("/");
+          router.replace('/');
         },
       });
 
       if (res.error) {
-        toast.error("Aconteceu um erro!", {
+        toast.error('Aconteceu um erro!', {
           description:
-            res.error?.message === "Password is too short"
-              ? "Escolha uma senha mais forte."
-              : "Por favor, tente novamente.",
+            res.error?.message === 'Password is too short'
+              ? 'Escolha uma senha mais forte.'
+              : 'Por favor, tente novamente.',
         });
 
         setIsLoading(false);
@@ -59,8 +59,8 @@ const SignInPage = () => {
 
       setIsLoading(false);
 
-      toast.error("Success!", {
-        description: "You have successfully logged in.",
+      toast.error('Success!', {
+        description: 'You have successfully logged in.',
       });
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ const SignInPage = () => {
               <Input
                 id="name"
                 type="name"
-                {...register("name")}
+                {...register('name')}
                 placeholder="Your Name"
               />
               {errors.email && (
@@ -103,7 +103,7 @@ const SignInPage = () => {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                {...register("email")}
+                {...register('email')}
               />
               {errors.email && (
                 <p className="text-sm text-destructive">
@@ -117,7 +117,7 @@ const SignInPage = () => {
                 id="password"
                 type="password"
                 placeholder="*********"
-                {...register("password")}
+                {...register('password')}
               />
               {errors.password && (
                 <p className="text-sm text-destructive">
@@ -129,13 +129,13 @@ const SignInPage = () => {
               {isLoading ? (
                 <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                "Sign-up"
+                'Sign-up'
               )}
             </Button>
           </form>
           <div className="text-center text-sm">
             <p className="text-muted-foreground">
-              Have an account?{" "}
+              Have an account?{' '}
               <a href="/sign-in" className="text-primary hover:underline">
                 Sign in
               </a>

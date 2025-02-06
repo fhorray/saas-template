@@ -1,13 +1,13 @@
-import { APP_INFO, ROLES, ROLE_LIST } from "@/config";
-import { db } from "@/db";
+import { APP_INFO, ROLES, ROLE_LIST } from '@/config';
+import { db } from '@/db';
 import {
   account,
   session as sessionDb,
   user as userDb,
   verification,
-} from "@/db/schemas";
-import { BetterAuthPlugin, betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
+} from '@/db/schemas';
+import { BetterAuthPlugin, betterAuth } from 'better-auth';
+import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 
 // plugins
 import {
@@ -15,13 +15,13 @@ import {
   createAuthEndpoint,
   createAuthMiddleware,
   openAPI,
-} from "better-auth/plugins";
+} from 'better-auth/plugins';
 
 export const auth = betterAuth({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
+  baseURL: 'http://localhost:8788/api/auth',
 
   database: drizzleAdapter(db, {
-    provider: "pg",
+    provider: 'pg',
     schema: {
       user: userDb,
       session: sessionDb,

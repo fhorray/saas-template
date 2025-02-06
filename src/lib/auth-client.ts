@@ -1,8 +1,10 @@
-import { createAuthClient } from "better-auth/react";
-import { redirect } from "next/navigation";
-import { auth } from "./auth";
+import { createAuthClient } from 'better-auth/react';
+import { redirect } from 'next/navigation';
+import { auth } from './auth';
 
-export const authClient = createAuthClient();
+export const authClient = createAuthClient({
+  baseURL: 'http://localhost:8788/api/auth',
+});
 
 /**
  * Function do sign out the current logged user.
@@ -12,7 +14,7 @@ export const logout = (path?: string) => {
   authClient.signOut({
     fetchOptions: {
       onSuccess: () => {
-        redirect(path ?? "/sign-in");
+        redirect(path ?? '/sign-in');
       },
     },
   });
