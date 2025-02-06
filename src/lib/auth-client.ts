@@ -1,8 +1,10 @@
 import { createAuthClient } from "better-auth/react";
 import { redirect } from "next/navigation";
-import { auth } from "./auth";
+import { adminClient } from "better-auth/client/plugins";
 
-export const authClient = createAuthClient();
+export const authClient = createAuthClient({
+  plugins: [adminClient()],
+});
 
 /**
  * Function do sign out the current logged user.

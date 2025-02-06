@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { SelectUser } from "@/types/user";
 import {
@@ -12,7 +13,7 @@ import {
   UserXIcon,
   UsersIcon,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface UserTableProps {
   users: SelectUser[];
@@ -47,14 +48,28 @@ const mockUsers: Partial<SelectUser>[] = [
 export const runtime = "edge";
 
 const UsersDetails = () => {
-  const [users, setUsers] = useState(mockUsers);
+  const [users, setUsers] = useState<any>();
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await authClient.admin.listUsers({
+        query: {
+          limit: 10,
+        },
+      });
+
+      setUsers(data);
+    };
+
+    getUsers();
+  }, []);
 
   const handleEdit = (user: SelectUser) => {
     console.log("Edit user:", user);
   };
 
   const handleDelete = (userId: string) => {
-    setUsers(users.filter((user) => user.id !== userId));
+    // setUsers(users.filter((user) => user.id !== userId));
   };
 
   const stats = [

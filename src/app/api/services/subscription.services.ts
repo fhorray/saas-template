@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { subscription } from "@/db/schemas/subscription";
+import { subscriptions } from "@/db/schemas/subscription";
 import { SelectSubscription } from "@/types/subscription";
 import { User } from "better-auth";
 import { eq } from "drizzle-orm";
@@ -13,8 +13,8 @@ export const getSubscriptionService = async (
 
   const [data] = await db
     .select()
-    .from(subscription)
-    .where(eq(subscription.userId, user?.id as string));
+    .from(subscriptions)
+    .where(eq(subscriptions.userId, user?.id as string));
 
   if (!data) return null;
 

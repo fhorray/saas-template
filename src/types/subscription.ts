@@ -1,7 +1,7 @@
-import { subscription } from "@/db/schemas/subscription";
+import { subscriptions } from "@/db/schemas/subscription";
 import { createInsertSchema } from "drizzle-zod";
 
-export const insertSubscriptionSchema = createInsertSchema(subscription);
+export const insertSubscriptionSchema = createInsertSchema(subscriptions);
 
-export type InsertSubscription = typeof subscription.$inferInsert;
-export type SelectSubscription = typeof subscription.$inferSelect;
+export type InsertSubscription = typeof subscriptions.$inferInsert;
+export type SelectSubscription = typeof subscriptions.$inferSelect;

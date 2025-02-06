@@ -6,15 +6,14 @@ pages_build_output_dir = ".vercel/output/static"
 
 
 ######## PREVIEW environment config ########
-# [env.preview.vars]
-# API_KEY = "xyz789"
+[env.preview.vars]
+NODE_VERSION = "22.12.0"
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PREVIEW_NAMESPACE_ID>"
 
 ######## PRODUCTION environment config ########
-
 [env.production.vars]
 NODE_VERSION = "22.12.0"
 

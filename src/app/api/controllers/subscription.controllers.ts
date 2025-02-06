@@ -12,7 +12,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { STRIPE_PLANS, STRIPE_PLAN_NAMES, TRIAL_DAYS } from "@/config";
 import { getSessionInfo, stripeClient } from "@/lib/stripe";
 import { db } from "@/db";
-import { subscription } from "@/db/schemas";
+import { subscriptions } from "@/db/schemas";
 import { InsertSubscription } from "@/types/subscription";
 
 const factory = createFactory<{
@@ -130,7 +130,7 @@ export const subscriptionCallback = factory.createHandlers(
         sessionInfo.session.status === "complete" &&
         sessionInfo.session.payment_status === "paid"
       ) {
-        const subscriptionDb = await db.insert(subscription).values({
+        const subscriptionDb = await db.insert(subscriptions).values({
           id: createId(),
           userId: user.id,
           customerId: sessionInfo.subscription?.customer as string,

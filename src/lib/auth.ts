@@ -1,10 +1,10 @@
 import { APP_INFO, ROLES, ROLE_LIST } from "@/config";
 import { db } from "@/db";
 import {
-  account,
-  session as sessionDb,
-  user as userDb,
-  verification,
+  accounts,
+  sessions as sessionDb,
+  users as userDb,
+  verifications,
 } from "@/db/schemas";
 import { BetterAuthPlugin, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -22,11 +22,12 @@ export const auth = betterAuth({
   database: drizzleAdapter(drizzle(process.env.DATABASE_URL!), {
     provider: "pg",
     schema: {
-      user: userDb,
-      session: sessionDb,
-      account: account,
-      verification: verification,
+      users: userDb,
+      sessions: sessionDb,
+      accounts: accounts,
+      verifications: verifications,
     },
+    usePlural: true,
   }),
 
   trustedOrigins: ["http://127.0.0.1:8788"],

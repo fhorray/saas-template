@@ -16,7 +16,7 @@
     "drop": "drizzle-kit drop",
     "studio": "drizzle-kit studio",
     "cron": "curl 'http://localhost:3000/__scheduled?cron=*+*+*+*+*'",
-    "auth:generate": "bunx @better-auth/cli generate --config='/src/lib/auth.ts' --output='./src/db/schemas/auth.ts'"
+    "auth:generate": "bunx @better-auth/cli generate --config='/src/lib/auth.ts' --output='./src/db/schemas/auth-test.ts'"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.2",

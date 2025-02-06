@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable, text, jsonb, pgEnum } from "drizzle-orm/pg-core";
 
-import { user } from "./auth";
+import { users } from "./auth";
 
 export const subscriptionStatusEnum = pgEnum("subscription_status_enum", [
   "incomplete",
@@ -14,12 +14,12 @@ export const subscriptionStatusEnum = pgEnum("subscription_status_enum", [
   "paused",
 ]);
 
-export const subscription = pgTable("subscription", {
+export const subscriptions = pgTable("subscriptions", {
   id: text("id").primaryKey(),
   userId: text("user_id")
     .notNull()
     .unique()
-    .references(() => user.id, { onDelete: "cascade" }),
+    .references(() => users.id, { onDelete: "cascade" }),
   customerId: text("customer_id"),
   pricing: text("pricing"),
   subscribedAt: text("subscribed_at"),
@@ -36,9 +36,9 @@ export const subscription = pgTable("subscription", {
   cardLastFour: text("card_last_four"),
 });
 
-export const subscriptionsRelations = relations(subscription, ({ one }) => ({
-  user: one(user, {
-    fields: [subscription.userId],
-    references: [user.id],
+export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
+  user: one(users, {
+    fields: [subscriptions.userId],
+    references: [users.id],
   }),
 }));
