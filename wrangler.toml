@@ -1,0 +1,25 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "menuyu"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+NODE_VERSION = "22.12.0"
+
+######## PREVIEW environment config ########
+
+# [env.preview.vars]
+# API_KEY = "xyz789"
+
+# [[env.preview.kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "<PREVIEW_NAMESPACE_ID>"
+
+######## PRODUCTION environment config ########
+
+# [env.production.vars]
+# API_KEY = "abc123"
+
+# [[env.production.kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "<PRODUCTION_NAMESPACE_ID>"
