@@ -9,6 +9,7 @@ pages_build_output_dir = ".vercel/output/static"
 [env.preview.vars]
 NODE_VERSION = "22.12.0"
 BASE_URL = "http://localhost:3000"
+NEXT_PUBLIC_BASE_URL = "http://localhost:3000"
 
 ######## PRODUCTION environment config ########
 [env.production.vars]

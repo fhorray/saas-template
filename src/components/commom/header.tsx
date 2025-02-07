@@ -14,6 +14,7 @@ import { TSession } from "@/lib/auth";
 
 import { authClient, logout } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { SettingsModal } from "../modals/settings";
 
 export const Header = () => {
   return (
@@ -68,7 +69,11 @@ const UserNav = () => {
           {/* profile */}
           <DropdownMenuItem>Profile</DropdownMenuItem>
           {/* configurations */}
-          <DropdownMenuItem>Configurations</DropdownMenuItem>
+          <SettingsModal>
+            <span className="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent hover:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0">
+              Configurations
+            </span>
+          </SettingsModal>
           {/* plan */}
           <DropdownMenuItem onClick={() => router.push("/subscription")}>
             Subscription
