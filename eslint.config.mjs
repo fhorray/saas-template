@@ -19,6 +19,10 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      "react/no-children-prop": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    }
   },
 ];
 
